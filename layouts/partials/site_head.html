@@ -150,8 +150,12 @@
   {{ end }}
 
   <link rel="manifest" href="{{ "site.webmanifest" | relURL }}">
+  <!-- 
   <link rel="icon" type="image/png" href="{{ "/img/icon.png" | relURL }}">
-  <link rel="apple-touch-icon" type="image/png" href="{{ "/img/icon-192.png" | relURL }}">
+  <link rel="apple-touch-icon" type="image/png" href="{{ "/img/icon-192.png" | relURL }}"> 
+  -->
+  <link rel="icon" type="image/png" href="{{ "/img/favicon-100.png" | relURL }}">
+  <link rel="apple-touch-icon" type="image/png" href="{{ "/img/favicon-200.png" | relURL }}">
 
   <link rel="canonical" href="{{ .Permalink }}">
 
@@ -168,7 +172,7 @@
     {{ $og_image = (printf "img/%s" site.Params.avatar) | absURL }}
     {{ $twitter_card = "summary" }}
   {{ else }}
-    {{ $og_image = "img/icon-192.png" | absURL }}
+    {{ $og_image = "img/dano-og-image.jpg" | absURL }}
     {{ $twitter_card = "summary" }}
   {{ end }}
   <meta property="twitter:card" content="{{ $twitter_card }}">
@@ -180,10 +184,13 @@
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:title" content="{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ site.Title }}">
   <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:type" content="website">
+
   {{- with $og_image -}}
   <meta property="og:image" content="{{.}}">
   <meta property="twitter:image" content="{{.}}">
   {{- end -}}
+  
   <meta property="og:locale" content="{{ site.LanguageCode | default "en-us" }}">
   {{ if .IsPage }}
   {{ if not .PublishDate.IsZero }}<meta property="article:published_time" content="{{ .PublishDate.Format "2006-01-02T15:04:05-07:00" | safeHTML }}">
